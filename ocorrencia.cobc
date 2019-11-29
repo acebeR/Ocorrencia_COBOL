@@ -1,0 +1,56 @@
+IDENTIFICATION DIVISION.
+PROGRAM-ID. CONTADOR.
+ENVIRONMENT DIVISION.
+CONFIGURATION SECTION.
+SPECIAL-NAMES.
+    DECIMAL-POINT IS COMMA.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+77 CTE-PROG PIC X(008) VALUE 'HELLO'.
+77 CTE-VERS PIC X(006) VALUE 'VRS001'.
+
+01 CONTADOR PIC 9(008).
+01 NOME     PIC X(010).
+01 RESPOSTA PIC X(050).
+
+PROCEDURE DIVISION.
+
+DISPLAY '*----------------------------------------------------------*'
+DISPLAY '*                       OCORRENCIAS                        *'
+DISPLAY '*----------------------------------------------------------*'
+PERFORM UNTIL CONTADOR EQUAL 10
+    ADD 1 TO CONTADOR
+       
+    EVALUATE CONTADOR
+        WHEN 01
+            MOVE 'PRIMEIRO' TO NOME
+        WHEN 02
+            MOVE 'SEGUNDO' TO NOME
+        WHEN 03
+            MOVE 'TERCEIRO' TO NOME
+        WHEN 04
+            MOVE 'QUARTO' TO NOME
+        WHEN 05
+            MOVE 'QUINTO' TO NOME
+        WHEN 06
+            MOVE 'SEXTO' TO NOME
+        WHEN 07
+            MOVE 'SÉTIMO' TO NOME
+        WHEN 08
+            MOVE 'OITAVO' TO NOME
+        WHEN 09
+            MOVE 'NONO' TO NOME
+        WHEN OTHER
+            MOVE 'DÉCIMO' TO NOME
+    END-EVALUATE
+    
+    STRING 'Ocorrencia..: ' CONTADOR ' - ' NOME
+	    DELIMITED BY SIZE INTO RESPOSTA
+    END-STRING
+    
+    DISPLAY RESPOSTA
+    DISPLAY '*----------------------------------------------------------*'
+END-PERFORM
+
+STOP RUN.
